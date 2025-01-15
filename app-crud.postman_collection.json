@@ -1,0 +1,293 @@
+{
+	"info": {
+		"_postman_id": "0fc52b61-7f17-4cc9-99dd-7657019d7211",
+		"name": "app-crud",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40424308"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "createUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Gabriel\",\r\n    \"email\": \"gabrielejemplo2@gmail.com\",\r\n    \"password\": \"prueba12345\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/usuarios/register",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"usuarios",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "loginUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gabrielalopez1@gmail.com\",\r\n    \"password\": \"prueba12345\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/usuarios/login",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"usuarios",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refreshToken",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoiZ2FicmllbGFsb3BlejFAZ21haWwuY29tIiwibmFtZSI6IkdhYnJpZWxhIiwiaWF0IjoxNzM2ODc5MTYwLCJleHAiOjE3Mzc0ODM5NjB9.8CAZJHAW87RWrIGqPFv_WQEoAFmAe-qdjOKdZydMnos",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gabrielalopez1@gmail.com\",\r\n    \"password\": \"prueba12345\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/usuarios/refresh",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"usuarios",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/usuarios",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/usuarios/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/usuarios/1/2",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"usuarios",
+								"1",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tareas",
+			"item": [
+				{
+					"name": "createTarea",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\": \"Verficación de la base de datos\",\r\n    \"descripcion\": \"Verificar la actualización del formato de fecha\",\r\n    \"fecha\": \"2025-02-14\",\r\n    \"prioridad\": \"Alta\",\r\n    \"estado\": \"En proceso\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/tareas",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"tareas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTareaById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/tareas/1",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"tareas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllTareas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/tareas",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"tareas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTarea",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"titulo\": \"Verficación de la base de datos\",\r\n        \"descripcion\": \"Verificar la actualización del formato de fecha\",\r\n        \"fecha\": \"2025-01-14\",\r\n        \"prioridad\": \"Alta\",\r\n        \"estado\": \"Terminada\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}:{{port}}/api/tareas/2",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"tareas",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTarea",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}:{{port}}/api/tareas/3",
+							"host": [
+								"{{server}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"tareas",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
