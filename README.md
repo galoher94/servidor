@@ -1,99 +1,112 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Backend README
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Proyecto: Gestión de Tareas (Backend)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Este proyecto es el backend para la aplicación de gestión de tareas. Desarrollado con **Node.js**, **Express**, y **JWT** para la autenticación.
 
-## Description
+### Características
+- **Autenticación de Usuarios**: Login y Registro.
+- **Gestión de Tareas**: CRUD completo.
+- **Protección de Rutas**: Middleware de autenticación basado en JWT.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+## Requisitos Previos
 
-```bash
-$ npm install
+### Dependencias del Proyecto
+Asegúrate de tener instaladas:
+- [Node.js](https://nodejs.org/) (v16 o superior)
+- [MongoDB](https://www.mongodb.com/) (Base de datos para almacenar usuarios y tareas)
+
+### Variables de Entorno
+Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
+
+```env
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/tareas
+JWT_SECRET=tu_secreto_seguro
 ```
 
-## Compile and run the project
+---
 
+## Instalación y Uso
+
+### 1. Instalar Dependencias
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
-
+### 2. Ejecutar el Servidor en Desarrollo
 ```bash
-# unit tests
-$ npm run test
+npm run dev
+```
+El backend estará disponible en `http://localhost:5000`.
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+### 3. Generar la Build para Producción
+```bash
+npm run build
 ```
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## Endpoints del API
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### Rutas de Autenticación
 
-```bash
-$ npm install -g mau
-$ mau deploy
+- **POST /api/auth/register**: Registro de usuario.
+- **POST /api/auth/login**: Inicio de sesión (retorna un token JWT).
+
+### Rutas de Tareas (Protegidas)
+
+- **GET /api/tareas**: Listar todas las tareas.
+- **POST /api/tareas**: Crear una nueva tarea.
+- **GET /api/tareas/:id**: Obtener una tarea específica.
+- **PUT /api/tareas/:id**: Actualizar una tarea existente.
+- **DELETE /api/tareas/:id**: Eliminar una tarea.
+
+---
+
+## Estructura de Datos
+
+### Usuarios
+Colección: `usuarios`
+```json
+{
+  "_id": "ObjectId",
+  "nombre": "string",
+  "email": "string",
+  "password": "string (hashed)",
+  "fechaCreacion": "Date"
+}
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### Tareas
+Colección: `tareas`
+```json
+{
+  "_id": "ObjectId",
+  "titulo": "string",
+  "descripcion": "string",
+  "completado": "boolean",
+  "usuarioId": "ObjectId (referencia a usuarios)",
+  "fechaCreacion": "Date",
+  "fechaActualizacion": "Date"
+}
+```
 
-## Resources
+---
 
-Check out a few resources that may come in handy when working with NestJS:
+## Middleware
+- **Autenticación**: Asegura que el token JWT esté presente y sea válido antes de acceder a las rutas protegidas.
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+---
+## Repositorio en GITHUB
 
-## Support
+https://github.com/galoher94/servidor.git
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## Contribuciones
+1. Haz un fork del proyecto.
+2. Crea una rama para tu nueva característica: `git checkout -b feature/nueva-funcionalidad`.
+3. Realiza commits descriptivos: `git commit -m "Añade nueva funcionalidad"`.
+4. Envía un pull request a la rama principal.
